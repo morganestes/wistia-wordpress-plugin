@@ -2,8 +2,8 @@
 Contributors: wistia
 Tags: wistia, oembed, video, embed
 Requires at least: 2.9.1
-Tested up to: 3.5.1
-Stable tag: 0.6
+Tested up to: 3.6.1
+Stable tag: 0.6.1
 
 Enables all Wistia embed types to be used in your WordPress blog.
 
@@ -29,6 +29,9 @@ http://wistia.com/doc/wordpress#using_the_oembed_embed_code
 4. Activate the plugin through the 'Plugins' menu in WordPress.
 
 == Changelog ==
+= 0.6.1 =
+* Load concatenated JavaScript files in `concat_script_tag` from a protocol-relative URI.
+* Tested against WordPress 3.6.1.
 
 = 0.6 =
 * Changed oembed regexp to properly detect new Wistia oembed URLs.

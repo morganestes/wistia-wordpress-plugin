@@ -3,7 +3,7 @@
 Plugin Name: Wistia WordPress Plugin
 Plugin URI: https://github.com/wistia/wistia-wordpress-plugin
 Description: A plugin that allows you to embed videos from your Wistia account into WordPress.
-Version: 0.6
+Version: 0.6.1
 Author: Wistia, Inc.
 Author URI: http://wistia.com
 License: MIT
@@ -67,5 +67,3 @@ add_filter('the_content', 'wistia_add_scripts_if_necessary', 1002);
 add_filter('the_editor_content', 'wistia_extract_embeds', 2);
 add_filter('the_editor_content', 'wistia_insert_embeds_for_editor', 1001);
 add_filter('tiny_mce_before_init', 'add_valid_tiny_mce_elements' );
-
-?>

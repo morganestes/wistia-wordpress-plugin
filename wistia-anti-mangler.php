@@ -5,11 +5,11 @@ class WistiaAntiMangler {
 
 
   /**
-   * Identify all wistia embeds, save their raw html, and replace them 
-   * with a random alphanumeric placeholder. This is applied as a filter 
+   * Identify all wistia embeds, save their raw html, and replace them
+   * with a random alphanumeric placeholder. This is applied as a filter
    * before any other filters.
    *
-   * We wrap the placeholder in a div to prevent wpautop from surrounding 
+   * We wrap the placeholder in a div to prevent wpautop from surrounding
    * our text.
    */
   function extract_embeds($text) {
@@ -28,7 +28,7 @@ class WistiaAntiMangler {
 
 
   /**
-   * Given all the placeholders created by extract_embeds, insert 
+   * Given all the placeholders created by extract_embeds, insert
    * the saved raw html back into the text.
    */
   function insert_embeds($text) {
@@ -101,7 +101,7 @@ class WistiaAntiMangler {
     preg_match('/[^\s>]+/', $haystack, $matches, null, $start_carrot_index + 1);
     $opening_tag_name = $matches[0];
 
-    // find the closing carrot. 
+    // find the closing carrot.
     $end_carrot_index = -1;
     for ($i = $start_carrot_index + 1; $i < strlen($haystack); $i++) {
       $char = $haystack[$i];
@@ -191,8 +191,8 @@ class WistiaAntiMangler {
   }
 
   /**
-   * Given an array of ranges, join any that are consecutive and separated only 
-   * by whitespace. This lets us turn partial embed matching into full embed matching, 
+   * Given an array of ranges, join any that are consecutive and separated only
+   * by whitespace. This lets us turn partial embed matching into full embed matching,
    * unless the user intentionally adds elements in between.
    *
    * @param   array   $ranges     An array of ranges, as defined in whole_tag_range_for_match.
@@ -230,7 +230,7 @@ class WistiaAntiMangler {
 
   /**
    * Identify wistia iframes by name="wistia_embed" or name="wistia_playlist".
-   * 
+   *
    * @param  string  $haystack
    *
    * @return  array
@@ -249,7 +249,7 @@ class WistiaAntiMangler {
 
   /**
    * Identify external scripts by fast.wistia.com, inline scripts by Wistia.embed for Wistia.plugin.
-   * 
+   *
    * @param  string  $haystack
    *
    * @return  array
@@ -268,7 +268,7 @@ class WistiaAntiMangler {
 
   /**
    * Identify external scripts by fast.wistia.com.
-   * 
+   *
    * @param  string  $haystack
    *
    * @return  array
@@ -287,7 +287,7 @@ class WistiaAntiMangler {
 
   /**
    * Identify API embed containers by class="wistia_embed" or class="wistia_playlist" on a div.
-   * 
+   *
    * @param  string  $haystack
    *
    * @return  array
@@ -306,7 +306,7 @@ class WistiaAntiMangler {
 
   /**
    * Identify popover links by class="wistia-popover on an <a>.
-   * 
+   *
    * @param  string  $haystack
    *
    * @return  array
@@ -326,7 +326,7 @@ class WistiaAntiMangler {
 
   /**
    * Identify noscript ranges by id=".*?_noscript_transcript".
-   * 
+   *
    * @param  string  $haystack
    *
    * @return  array
@@ -345,7 +345,7 @@ class WistiaAntiMangler {
 
   /**
    * Return all ranges for things that look like wistia embeds.
-   * 
+   *
    * @param  string  $haystack
    *
    * @return  array
@@ -359,9 +359,9 @@ class WistiaAntiMangler {
   }
 
   /**
-   * Return all ranges for things that look like wistia embeds, in the order 
+   * Return all ranges for things that look like wistia embeds, in the order
    * that they appear in the text.
-   * 
+   *
    * @param  string  $haystack
    *
    * @return  array
@@ -374,7 +374,7 @@ class WistiaAntiMangler {
 
   /**
    * Return all ranges of wistia embeds, consolidated.
-   * 
+   *
    * @param  string  $haystack
    *
    * @return  array
@@ -387,7 +387,7 @@ class WistiaAntiMangler {
   /**
    * Find any wistia scripts included in the text and save their names. e.g.
    * array('E-v1', 'socialbar-v1', 'postRoll-v1', 'popover-v1')
-   * 
+   *
    * @param  string  $haystack
    *
    * @return  array
@@ -407,10 +407,10 @@ class WistiaAntiMangler {
   }
 
   /**
-   * Given a function call, find the whole function range from open to close. Note 
-   * that this probably fails if an anonymous function is passed as a parameter, 
+   * Given a function call, find the whole function range from open to close. Note
+   * that this probably fails if an anonymous function is passed as a parameter,
    * but our embeds never accept that form.
-   * 
+   *
    * @param  string  $func_name  The name of the function to match.
    * @param  text  The text to search in.
    * @param  offset  Optional, the offset to start searching from.
@@ -430,10 +430,10 @@ class WistiaAntiMangler {
   }
 
   /**
-   * Given a function call, find the whole function from open to close. Note 
-   * that this probably fails if an anonymous function is passed as a parameter, 
+   * Given a function call, find the whole function from open to close. Note
+   * that this probably fails if an anonymous function is passed as a parameter,
    * but our embeds never accept that form.
-   * 
+   *
    * @param  string  $func_name  The name of the function to match.
    * @param  text  The text to search in.
    * @param  offset  Optional, the offset to start searching from.
@@ -450,9 +450,9 @@ class WistiaAntiMangler {
   }
 
   /**
-   * Determine what external scripts are required based purely on the contents 
+   * Determine what external scripts are required based purely on the contents
    * of the inline scripts.
-   * 
+   *
    * @param  string  $text
    *
    * @return  array
@@ -519,9 +519,9 @@ class WistiaAntiMangler {
 
 
   /**
-   * Determine what scripts need to be prepended to the text for it to 
+   * Determine what scripts need to be prepended to the text for it to
    * function properly.
-   * 
+   *
    * @param  string  $text
    *
    * @return  array
@@ -540,9 +540,9 @@ class WistiaAntiMangler {
   }
 
   /**
-   * Determine what scripts need to be appended to the text for it to 
+   * Determine what scripts need to be appended to the text for it to
    * function properly.
-   * 
+   *
    * @param  string  $text
    *
    * @return  array
@@ -561,15 +561,14 @@ class WistiaAntiMangler {
   }
 
   /**
-   * Given an array of scripts, output a single script tag to include all of 
+   * Given an array of scripts, output a single script tag to include all of
    * them.
-   * 
+   *
    * @param  array  $scripts
    *
    * @return  array
    */
   function concat_script_tag($scripts) {
-    return '<script charset="ISO-8859-1" src="http' . ($_SERVER['https'] == 'on' ? 's' : '') . '://fast.wistia.com/static/concat/' . implode($scripts, '%2C') . '.js"></script>';
+    return '<script src="//fast.wistia.com/static/concat/' . implode($scripts, '%2C') . '.js"></script>';
   }
 }
-?>
